@@ -1,918 +1,646 @@
-
-html
-
 <!DOCTYPE html>
-
 <html lang="ar" dir="rtl">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>اختبار التخطيط والتفكير الاستراتيجي التفاعلي</title>
-
+    <title>اختبار التخطيط والتفكير الاستراتيجي - نسخة عشوائية</title>
     <style>
-
         * {
-
             margin: 0;
-
             padding: 0;
-
             box-sizing: border-box;
-
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-
         }
-
-       
-
+        
         body {
-
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
             min-height: 100vh;
-
             display: flex;
-
             justify-content: center;
-
             align-items: center;
-
             padding: 20px;
-
         }
-
-       
-
+        
         .container {
-
             background: white;
-
             border-radius: 20px;
-
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-
             width: 100%;
-
-            max-width: 600px;
-
+            max-width: 700px;
             padding: 30px;
-
-            position: relative;
-
         }
-
-       
-
+        
         h1 {
-
-            color: #333;
-
+            color: #2c3e50;
             margin-bottom: 10px;
-
-            font-size: 24px;
-
+            font-size: 28px;
             text-align: center;
-
         }
-
-       
-
+        
         .subtitle {
-
-            color: #666;
-
+            color: #34495e;
             text-align: center;
-
             margin-bottom: 30px;
-
             padding-bottom: 20px;
-
-            border-bottom: 2px solid #f0f0f0;
-
+            border-bottom: 2px solid #ecf0f1;
         }
-
-       
-
+        
         .progress-bar {
-
             width: 100%;
-
             height: 10px;
-
-            background: #f0f0f0;
-
+            background: #ecf0f1;
             border-radius: 5px;
-
             margin-bottom: 30px;
-
             overflow: hidden;
-
         }
-
-       
-
+        
         .progress {
-
             height: 100%;
-
-            background: linear-gradient(90deg, #667eea, #764ba2);
-
+            background: linear-gradient(90deg, #2c3e50, #3498db);
             width: 0%;
-
             transition: width 0.3s ease;
-
         }
-
-       
-
+        
         .question-container {
-
             margin-bottom: 30px;
-
+            background: #f8fafc;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
-
-       
-
+        
         .question-number {
-
-            color: #667eea;
-
+            color: #3498db;
             font-weight: bold;
-
-            margin-bottom: 10px;
-
+            margin-bottom: 15px;
+            font-size: 1.1em;
         }
-
-       
-
+        
         .question-text {
-
-            font-size: 18px;
-
-            color: #333;
-
-            margin-bottom: 20px;
-
+            font-size: 20px;
+            color: #2c3e50;
+            margin-bottom: 25px;
             font-weight: 600;
-
+            line-height: 1.5;
         }
-
-       
-
+        
         .options {
-
             display: flex;
-
             flex-direction: column;
-
             gap: 12px;
-
+            margin-bottom: 20px;
         }
-
-       
-
+        
         .option {
-
             display: flex;
-
             align-items: center;
-
-            padding: 15px;
-
-            background: #f8f9fa;
-
-            border: 2px solid transparent;
-
+            padding: 15px 20px;
+            background: white;
+            border: 2px solid #e2e8f0;
             border-radius: 10px;
-
             cursor: pointer;
-
-            transition: all 0.3s ease;
-
+            transition: all 0.2s ease;
         }
-
-       
-
+        
         .option:hover {
-
-            background: #e9ecef;
-
+            background: #ebf8ff;
+            border-color: #3498db;
             transform: translateX(-5px);
-
         }
-
-       
-
+        
         .option.selected {
-
-            background: #e3f2fd;
-
-            border-color: #667eea;
-
+            background: #d4e6f1;
+            border-color: #2980b9;
         }
-
-       
-
+        
         .option.correct {
-
             background: #d4edda;
-
-            border-color: #28a745;
-
+            border-color: #27ae60;
         }
-
-       
-
+        
         .option.incorrect {
-
             background: #f8d7da;
-
-            border-color: #dc3545;
-
+            border-color: #e74c3c;
         }
-
-       
-
+        
         .option input[type="radio"] {
-
             margin-left: 15px;
-
             width: 18px;
-
             height: 18px;
-
             cursor: pointer;
-
         }
-
-       
-
+        
         .option label {
-
             flex: 1;
-
             cursor: pointer;
-
             font-size: 16px;
-
+            color: #2d3748;
         }
-
-       
-
+        
+        .option strong {
+            color: #2980b9;
+            margin-left: 8px;
+        }
+        
         .explanation {
-
             background: #fff3cd;
-
-            border-right: 4px solid #ffc107;
-
-            padding: 15px;
-
-            margin: 15px 0;
-
-            border-radius: 5px;
-
-            display: none;
-
-        }
-
-       
-
-        .explanation.show {
-
-            display: block;
-
-        }
-
-       
-
-        .explanation p {
-
-            color: #856404;
-
-            line-height: 1.6;
-
-        }
-
-       
-
-        .button-container {
-
-            display: flex;
-
-            gap: 10px;
-
-            justify-content: space-between;
-
-            margin-top: 20px;
-
-        }
-
-       
-
-        button {
-
-            padding: 12px 25px;
-
-            border: none;
-
+            border-right: 4px solid #f39c12;
+            padding: 18px;
+            margin: 20px 0 10px;
             border-radius: 8px;
-
-            font-size: 16px;
-
-            font-weight: 600;
-
-            cursor: pointer;
-
-            transition: all 0.3s ease;
-
-        }
-
-       
-
-        .btn-primary {
-
-            background: linear-gradient(135deg, #667eea, #764ba2);
-
-            color: white;
-
-            flex: 2;
-
-        }
-
-       
-
-        .btn-primary:hover:not(:disabled) {
-
-            transform: translateY(-2px);
-
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-
-        }
-
-       
-
-        .btn-secondary {
-
-            background: #6c757d;
-
-            color: white;
-
-            flex: 1;
-
-        }
-
-       
-
-        .btn-secondary:hover:not(:disabled) {
-
-            background: #5a6268;
-
-        }
-
-       
-
-        button:disabled {
-
-            opacity: 0.5;
-
-            cursor: not-allowed;
-
-        }
-
-       
-
-        .results {
-
-            text-align: center;
-
-            padding: 20px;
-
             display: none;
-
         }
-
-       
-
-        .results.show {
-
+        
+        .explanation.show {
             display: block;
-
         }
-
-       
-
-        .score {
-
-            font-size: 48px;
-
-            color: #667eea;
-
-            font-weight: bold;
-
-            margin: 20px 0;
-
+        
+        .explanation p {
+            color: #856404;
+            line-height: 1.7;
+            font-size: 1.1em;
         }
-
-       
-
-        .feedback {
-
-            background: #f8f9fa;
-
-            padding: 20px;
-
+        
+        .button-container {
+            display: flex;
+            gap: 15px;
+            justify-content: space-between;
+            margin-top: 25px;
+        }
+        
+        button {
+            padding: 14px 30px;
+            border: none;
             border-radius: 10px;
-
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            flex: 2;
+        }
+        
+        .btn-primary:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+        }
+        
+        .btn-secondary {
+            background: #95a5a6;
+            color: white;
+            flex: 1;
+        }
+        
+        .btn-secondary:hover:not(:disabled) {
+            background: #7f8c8d;
+        }
+        
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .results {
+            text-align: center;
+            padding: 30px;
+            display: none;
+        }
+        
+        .results.show {
+            display: block;
+        }
+        
+        .score {
+            font-size: 54px;
+            color: #3498db;
+            font-weight: bold;
             margin: 20px 0;
-
         }
-
-       
-
+        
+        .feedback {
+            background: #f0f7ff;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 25px 0;
+            text-align: right;
+        }
+        
+        .answer-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 25px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
+        
+        .answer-table th {
+            background: #3498db;
+            color: white;
+            padding: 12px;
+            font-weight: 600;
+        }
+        
+        .answer-table td {
+            padding: 10px;
+            border-bottom: 1px solid #ecf0f1;
+            text-align: center;
+        }
+        
+        .answer-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .answer-table tr:nth-child(even) {
+            background: #f8fafc;
+        }
+        
+        .correct-badge {
+            background: #27ae60;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.9em;
+        }
+        
         @media (max-width: 768px) {
-
             .container {
-
                 padding: 20px;
-
             }
-
-           
-
             .question-text {
-
-                font-size: 16px;
-
+                font-size: 18px;
             }
-
-           
-
             .option {
-
                 padding: 12px;
-
             }
-
         }
-
     </style>
-
 </head>
-
 <body>
-
     <div class="container">
-
         <h1>📋 اختبار التخطيط والتفكير الاستراتيجي</h1>
-
-        <div class="subtitle">10 أسئلة مع الشرح التفاعلي</div>
-
-       
-
+        <div class="subtitle">أسئلة عشوائية لاختبار قدراتك الحقيقية</div>
+        
         <div class="progress-bar">
-
             <div class="progress" id="progress"></div>
-
         </div>
-
-       
-
-        <div id="quiz-content">
-
-            <!-- سيتم تعبئة الأسئلة هنا بواسطة JavaScript -->
-
-        </div>
-
-       
-
+        
+        <div id="quiz-content"></div>
+        
         <div class="button-container">
-
             <button class="btn-secondary" id="prevBtn" onclick="previousQuestion()" disabled>السابق</button>
-
             <button class="btn-primary" id="nextBtn" onclick="nextQuestion()">التالي</button>
-
         </div>
-
-       
-
+        
         <div id="results" class="results">
-
-            <h2>🎉 تهانينا! لقد أكملت الاختبار</h2>
-
+            <h2>🎉 نتيجة الاختبار</h2>
             <div class="score" id="score">0/10</div>
-
             <div class="feedback" id="feedback"></div>
-
-            <button class="btn-primary" onclick="restartQuiz()">إعادة الاختبار</button>
-
+            
+            <h3 style="margin-top: 30px; color: #2c3e50;">📊 الإجابات الصحيحة</h3>
+            <table class="answer-table" id="answerTable">
+                <thead>
+                    <tr>
+                        <th>السؤال</th>
+                        <th>إجابتك</th>
+                        <th>الإجابة الصحيحة</th>
+                        <th>التقييم</th>
+                    </tr>
+                </thead>
+                <tbody id="answerTableBody"></tbody>
+            </table>
+            
+            <button class="btn-primary" onclick="restartQuiz()" style="margin-top: 25px;">إعادة الاختبار</button>
         </div>
-
     </div>
 
     <script>
-
-        const questions = [
-
+        // بنك الأسئلة الأساسي
+        const rawQuestions = [
             {
-
-                question: "1. ما هو الهدف الرئيسي من التخطيط؟",
-
-                options: ["أ. إعداد أوراق للعمل للمديرين", "ب. الاستعداد للمستقبل في ظل عدم اليقين", "ج. تجنب اتخاذ القرارات", "د. القضاء على جميع المخاطر"],
-
-                correct: 1,
-
+                stem: "ما هو الهدف الرئيسي من التخطيط؟",
+                opts: [
+                    "إعداد أوراق للعمل للمديرين",
+                    "الاستعداد للمستقبل في ظل عدم اليقين",
+                    "تجنب اتخاذ القرارات",
+                    "القضاء على جميع المخاطر"
+                ],
+                correctText: "الاستعداد للمستقبل في ظل عدم اليقين",
                 explanation: "التخطيط يساعدنا على تقليل عدم اليقين واتخاذ قرارات مدروسة حول المستقبل. إنه ليس مجرد أوراق عمل."
-
             },
-
             {
-
-                question: "2. أي من التالي يصف السلوك التفاعلي بشكل أفضل؟",
-
-                options: ["أ. التنبؤ بالتحديات المستقبلية", "ب. الاستجابة بعد وقوع الأحداث", "ج. تخصيص الموارد بشكل منهجي", "د. تحديد الأهداف طويلة المدى"],
-
-                correct: 1,
-
-                explanation: "السلوك التفاعلي يشبه 'إطفاء الحرائق'  التعامل مع المشكلات بعد وقوعها بدلاً من الوقاية منها."
-
+                stem: "أي من التالي يصف السلوك التفاعلي بشكل أفضل؟",
+                opts: [
+                    "التنبؤ بالتحديات المستقبلية",
+                    "الاستجابة بعد وقوع الأحداث",
+                    "تخصيص الموارد بشكل منهجي",
+                    "تحديد الأهداف طويلة المدى"
+                ],
+                correctText: "الاستجابة بعد وقوع الأحداث",
+                explanation: "السلوك التفاعلي يشبه 'إطفاء الحرائق' — التعامل مع المشكلات بعد وقوعها بدلاً من الوقاية منها."
             },
-
             {
-
-                question: "3. أي عبارة تميز الاستراتيجية عن التخطيط؟",
-
-                options: ["أ. الاستراتيجية تتعلق بالإجراءات؛ التخطيط يتعلق بالأهداف", "ب. الاستراتيجية تتعلق بالموقع واتخاذ القرار؛ التخطيط يتعلق بتحويل الاستراتيجية إلى عمل", "ج. الاستراتيجية مخصصة فقط للشركات؛ التخطيط مخصص فقط للحكومات", "د. الاستراتيجية لا تحتاج إلى تحليل؛ التخطيط يقتصر على التحليل"],
-
-                correct: 1,
-
+                stem: "أي عبارة تميز الاستراتيجية عن التخطيط؟",
+                opts: [
+                    "الاستراتيجية تتعلق بالإجراءات؛ التخطيط يتعلق بالأهداف",
+                    "الاستراتيجية تتعلق بالموقع واتخاذ القرار؛ التخطيط يتعلق بتحويل الاستراتيجية إلى عمل",
+                    "الاستراتيجية مخصصة فقط للشركات؛ التخطيط مخصص فقط للحكومات",
+                    "الاستراتيجية لا تحتاج إلى تحليل؛ التخطيط يقتصر على التحليل"
+                ],
+                correctText: "الاستراتيجية تتعلق بالموقع واتخاذ القرار؛ التخطيط يتعلق بتحويل الاستراتيجية إلى عمل",
                 explanation: "الاستراتيجية تحدد مكان المنافسة وكيفية الفوز، بينما التخطيط يحول هذه الاستراتيجية إلى إجراءات فعلية."
-
             },
-
             {
-
-                question: "4. لماذا يعتبر التفكير النظامي مهمًا في التخطيط؟",
-
-                options: ["أ. يسمح لنا بتجاهل المنافسين", "ب. يوضح كيف أن جميع أجزاء النظام مترابطة", "ج. يضمن النجاح في كل خطة", "د. ينطبق فقط على المؤسسات الكبيرة"],
-
-                correct: 1,
-
-                explanation: "كل شيء مترابط  الموردين، العملاء، اللوائح، والمنافسين. فهم هذه الروابط يحسن اتخاذ القرارات."
-
+                stem: "لماذا يعتبر التفكير النظامي مهمًا في التخطيط؟",
+                opts: [
+                    "يسمح لنا بتجاهل المنافسين",
+                    "يوضح كيف أن جميع أجزاء النظام مترابطة",
+                    "يضمن النجاح في كل خطة",
+                    "ينطبق فقط على المؤسسات الكبيرة"
+                ],
+                correctText: "يوضح كيف أن جميع أجزاء النظام مترابطة",
+                explanation: "كل شيء مترابط — الموردين، العملاء، اللوائح، والمنافسين. فهم هذه الروابط يحسن اتخاذ القرارات."
             },
-
             {
-
-                question: "5. ما المقصود بالتنازلات في التخطيط الاستراتيجي؟",
-
-                options: ["أ. اختيار بين خيارات مربحة بنفس القدر", "ب. إعطاء الأولوية لبعض الأفعال مع تجنب البعض الآخر عن قصد", "ج. شراء وبيع الموارد في السوق", "د. الاستجابة لأفعال المنافسين"],
-
-                correct: 1,
-
+                stem: "ما المقصود بالتنازلات في التخطيط الاستراتيجي؟",
+                opts: [
+                    "اختيار بين خيارات مربحة بنفس القدر",
+                    "إعطاء الأولوية لبعض الأفعال مع تجنب البعض الآخر عن قصد",
+                    "شراء وبيع الموارد في السوق",
+                    "الاستجابة لأفعال المنافسين"
+                ],
+                correctText: "إعطاء الأولوية لبعض الأفعال مع تجنب البعض الآخر عن قصد",
                 explanation: "التنازلات تحدث لأن الموارد، والوقت، والانتباه محدودة. اختيار ما لا نفعله مهم بنفس قدر اختيار ما نفعله."
-
             },
-
             {
-
-                question: "6. أي من التالي يمثل الندرة؟",
-
-                options: ["أ. موارد غير محدودة لكل مشروع", "ب. ميزانية أو وقت أو انتباه محدود لمهمة معينة", "ج. التخطيط للسيناريوهات المستقبلية", "د. تحديد الأهداف الاستراتيجية"],
-
-                correct: 1,
-
-                explanation: "الندرة هي السبب في وجود التخطيط  لا يمكننا القيام بكل شيء، لذلك يجب تحديد الأولويات."
-
+                stem: "أي من التالي يمثل الندرة؟",
+                opts: [
+                    "موارد غير محدودة لكل مشروع",
+                    "ميزانية أو وقت أو انتباه محدود لمهمة معينة",
+                    "التخطيط للسيناريوهات المستقبلية",
+                    "تحديد الأهداف الاستراتيجية"
+                ],
+                correctText: "ميزانية أو وقت أو انتباه محدود لمهمة معينة",
+                explanation: "الندرة هي السبب في وجود التخطيط — لا يمكننا القيام بكل شيء، لذلك يجب تحديد الأولويات."
             },
-
             {
-
-                question: "7. التفكير طويل المدى في التخطيط يركز على:",
-
-                options: ["أ. المكاسب الفورية دون النظر للعواقب", "ب. التحضير اليوم من أجل النتائج في المستقبل", "ج. تجاهل المشكلات الحالية", "د. القيام فقط بما يفعله المنافسون"],
-
-                correct: 1,
-
+                stem: "التفكير طويل المدى في التخطيط يركز على:",
+                opts: [
+                    "المكاسب الفورية دون النظر للعواقب",
+                    "التحضير اليوم من أجل النتائج في المستقبل",
+                    "تجاهل المشكلات الحالية",
+                    "القيام فقط بما يفعله المنافسون"
+                ],
+                correctText: "التحضير اليوم من أجل النتائج في المستقبل",
                 explanation: "التفكير طويل المدى يوازن بين الإجراءات قصيرة المدى والأهداف المستقبلية. على سبيل المثال، الاستثمار في الجودة قد يقلل من الربح قصير المدى لكنه يبني نجاحًا طويل المدى."
-
             },
-
             {
-
-                question: "8. أي من الأمثلة التالية يعبر عن التخطيط لتقليل العشوائية؟",
-
-                options: ["أ. توزيع المهام على الموظفين بشكل عشوائي", "ب. التنبؤ بالطلب الموسمي لإدارة المخزون", "ج. تجاهل بيانات الأداء السابقة", "د. الانتظار حتى تظهر المشكلة للتصرف"],
-
-                correct: 1,
-
+                stem: "أي من الأمثلة التالية يعبر عن التخطيط لتقليل العشوائية؟",
+                opts: [
+                    "توزيع المهام على الموظفين بشكل عشوائي",
+                    "التنبؤ بالطلب الموسمي لإدارة المخزون",
+                    "تجاهل بيانات الأداء السابقة",
+                    "الانتظار حتى تظهر المشكلة للتصرف"
+                ],
+                correctText: "التنبؤ بالطلب الموسمي لإدارة المخزون",
                 explanation: "التخطيط يقلل عدم اليقين من خلال توقع التحديات وتنظيم الموارد مسبقًا."
-
             },
-
             {
-
-                question: "9. في مثال مشروع الجامعة بقيمة 10,000 دولار، أي سؤال يتعلق بالتخطيط الاستراتيجي؟",
-
-                options: ["أ. كم يمكنني أن أنفق على الغداء؟", "ب. من هو العميل المستهدف وما حاجته؟", "ج. هل يجب أن أشاهد فيلمًا اليوم؟", "د. كم عدد الرسائل الإلكترونية التي يجب أن أرسلها في الساعة؟"],
-
-                correct: 1,
-
+                stem: "في مثال مشروع بقيمة 10,000 دولار، أي سؤال يتعلق بالتخطيط الاستراتيجي؟",
+                opts: [
+                    "كم يمكنني أن أنفق على الغداء؟",
+                    "من هو العميل المستهدف وما حاجته؟",
+                    "هل يجب أن أشاهد فيلمًا اليوم؟",
+                    "كم عدد الرسائل الإلكترونية التي يجب أن أرسلها في الساعة؟"
+                ],
+                correctText: "من هو العميل المستهدف وما حاجته؟",
                 explanation: "يبدأ التخطيط الاستراتيجي بتحديد العملاء واحتياجاتهم، وهو ما يوجه كل القرارات التالية."
-
             },
-
             {
-
-                question: "10. ما هو أهم درس حول التخطيط للطلاب الجدد؟",
-
-                options: ["أ. التخطيط يتعلق بإنشاء مستندات معقدة", "ب. التخطيط هو تفكير منظم حول المستقبل في ظل عدم اليقين", "ج. التخطيط يلغي الحاجة إلى اتخاذ القرارات", "د. التخطيط يضمن النجاح"],
-
-                correct: 1,
-
-                explanation: "التخطيط هو إطار ذهني، وليس وثيقة  يساعد الطلاب على اتخاذ قرارات مدروسة في ظل عدم اليقين."
-
+                stem: "ما هو أهم درس حول التخطيط للطلاب الجدد؟",
+                opts: [
+                    "التخطيط يتعلق بإنشاء مستندات معقدة",
+                    "التخطيط هو تفكير منظم حول المستقبل في ظل عدم اليقين",
+                    "التخطيط يلغي الحاجة إلى اتخاذ القرارات",
+                    "التخطيط يضمن النجاح"
+                ],
+                correctText: "التخطيط هو تفكير منظم حول المستقبل في ظل عدم اليقين",
+                explanation: "التخطيط هو إطار ذهني، وليس وثيقة — يساعد الطلاب على اتخاذ قرارات مدروسة في ظل عدم اليقين."
             }
-
         ];
 
+        // دالة خلط الخيارات
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        // تحضير الأسئلة مع خلط عشوائي للخيارات
+        function prepareQuestions() {
+            return rawQuestions.map(q => {
+                // نسخة من الخيارات
+                const shuffledOpts = [...q.opts];
+                // خلط الخيارات عشوائياً
+                shuffleArray(shuffledOpts);
+                
+                // إيجاد المؤشر الجديد للإجابة الصحيحة
+                const newCorrectIndex = shuffledOpts.indexOf(q.correctText);
+                
+                return {
+                    question: q.stem,
+                    options: shuffledOpts,
+                    correct: newCorrectIndex,
+                    explanation: q.explanation,
+                    correctText: q.correctText
+                };
+            });
+        }
+
+        // دالة خلط الأسئلة نفسها
+        function shuffleQuestions(questionsArray) {
+            return shuffleArray([...questionsArray]);
+        }
+
+        // تهيئة الأسئلة
+        let questions = prepareQuestions();
+        questions = shuffleQuestions(questions);
+
+        // متغيرات الحالة
         let currentQuestion = 0;
-
         let answers = new Array(questions.length).fill(null);
-
         let answered = new Array(questions.length).fill(false);
-
         let quizCompleted = false;
 
+        // دالة تحويل رقم الخيار إلى حرف عربي
+        function getLetter(index) {
+            const letters = ['أ', 'ب', 'ج', 'د'];
+            return letters[index] || 'أ';
+        }
+
         function renderQuestion() {
-
             const content = document.getElementById('quiz-content');
-
             const q = questions[currentQuestion];
-
-           
-
+            
             let html = `
-
                 <div class="question-container">
-
                     <div class="question-number">السؤال ${currentQuestion + 1} من ${questions.length}</div>
-
                     <div class="question-text">${q.question}</div>
-
                     <div class="options" id="options">
-
             `;
-
-           
-
+            
             q.options.forEach((option, index) => {
-
                 const isSelected = answers[currentQuestion] === index;
-
                 const isAnswered = answered[currentQuestion];
-
                 const isCorrect = isAnswered && index === q.correct;
-
                 const isIncorrect = isAnswered && isSelected && index !== q.correct;
-
-               
-
+                
                 let optionClass = 'option';
-
                 if (isSelected) optionClass += ' selected';
-
                 if (isCorrect) optionClass += ' correct';
-
                 if (isIncorrect) optionClass += ' incorrect';
-
-               
-
+                
                 html += `
-
                     <div class="${optionClass}" onclick="selectOption(${index})">
-
                         <input type="radio" name="question" value="${index}" ${isSelected ? 'checked' : ''} ${isAnswered ? 'disabled' : ''}>
-
-                        <label>${option}</label>
-
+                        <label><strong>${getLetter(index)}.</strong> ${option}</label>
                     </div>
-
                 `;
-
             });
-
-           
-
+            
             html += `
-
                     </div>
-
                     <div class="explanation ${answered[currentQuestion] ? 'show' : ''}" id="explanation">
-
                         <p><strong>الشرح:</strong> ${q.explanation}</p>
-
                     </div>
-
                 </div>
-
             `;
-
-           
-
+            
             content.innerHTML = html;
-
-           
-
+            
             // تحديث شريط التقدم
-
             const progress = ((currentQuestion + 1) / questions.length) * 100;
-
             document.getElementById('progress').style.width = `${progress}%`;
-
-           
-
-            // تحديث أزرار التنقل
-
+            
+            // تحديث الأزرار
             document.getElementById('prevBtn').disabled = currentQuestion === 0;
-
-           
-
+            
             const nextBtn = document.getElementById('nextBtn');
-
             if (currentQuestion === questions.length - 1) {
-
-                if (quizCompleted) {
-
-                    nextBtn.textContent = 'عرض النتائج';
-
-                } else {
-
-                    nextBtn.textContent = 'إنهاء';
-
-                }
-
+                nextBtn.textContent = 'إنهاء';
             } else {
-
                 nextBtn.textContent = 'التالي';
-
             }
-
         }
 
         function selectOption(optionIndex) {
-
             if (answered[currentQuestion] || quizCompleted) return;
-
-           
-
+            
             answers[currentQuestion] = optionIndex;
-
             answered[currentQuestion] = true;
-
-           
-
+            
             renderQuestion();
-
         }
 
         function nextQuestion() {
-
             if (currentQuestion < questions.length - 1) {
-
                 currentQuestion++;
-
                 renderQuestion();
-
             } else {
-
-                // عرض النتائج
-
                 showResults();
-
             }
-
         }
 
         function previousQuestion() {
-
             if (currentQuestion > 0) {
-
                 currentQuestion--;
-
                 renderQuestion();
-
             }
-
         }
 
         function showResults() {
-
             quizCompleted = true;
-
-           
-
+            
             // حساب النتيجة
-
             const correctAnswers = answers.reduce((count, answer, index) => {
-
                 return count + (answer === questions[index].correct ? 1 : 0);
-
             }, 0);
-
-           
-
-            const percentage = (correctAnswers / questions.length) * 100;
-
-           
-
+            
             // إخفاء محتوى الاختبار
-
             document.getElementById('quiz-content').style.display = 'none';
-
             document.querySelector('.button-container').style.display = 'none';
-
-           
-
+            
             // عرض النتائج
-
             const resultsDiv = document.getElementById('results');
-
             resultsDiv.classList.add('show');
-
-           
-
+            
             document.getElementById('score').textContent = `${correctAnswers}/${questions.length}`;
-
-           
-
-            let feedbackText = '';
-
-            if (percentage >= 90) {
-
-                feedbackText = 'ممتاز! فهم عميق جداً لمفاهيم التخطيط والتفكير الاستراتيجي.';
-
-            } else if (percentage >= 70) {
-
-                feedbackText = 'جيد جداً! لديك فهم جيد للمفاهيم الأساسية.';
-
-            } else if (percentage >= 50) {
-
-                feedbackText = 'مقبول. تحتاج إلى مراجعة بعض المفاهيم.';
-
-            } else {
-
-                feedbackText = 'ننصح بمراجعة الدروس مرة أخرى للاستفادة بشكل أفضل.';
-
+            
+            // إنشاء جدول الإجابات
+            let tableBody = '';
+            for (let i = 0; i < questions.length; i++) {
+                const q = questions[i];
+                const userAnswer = answers[i];
+                const userAnswerLetter = userAnswer !== null ? getLetter(userAnswer) : 'لم تجب';
+                const correctLetter = getLetter(q.correct);
+                const isCorrect = userAnswer === q.correct;
+                
+                tableBody += `
+                    <tr>
+                        <td>${i + 1}</td>
+                        <td>${userAnswerLetter}</td>
+                        <td>${correctLetter}</td>
+                        <td>${isCorrect ? '✅ صحيح' : '❌ خطأ'}</td>
+                    </tr>
+                `;
             }
-
-           
-
+            
+            document.getElementById('answerTableBody').innerHTML = tableBody;
+            
+            // تحليل الأداء
+            let feedbackText = '';
+            if (correctAnswers >= 9) {
+                feedbackText = '🌟 ممتاز! فهم عميق جداً لمفاهيم التخطيط والتفكير الاستراتيجي.';
+            } else if (correctAnswers >= 7) {
+                feedbackText = '📈 جيد جداً! لديك فهم جيد للمفاهيم الأساسية.';
+            } else if (correctAnswers >= 5) {
+                feedbackText = '📚 مقبول. تحتاج إلى مراجعة بعض المفاهيم.';
+            } else {
+                feedbackText = '🔄 ننصح بمراجعة الدروس مرة أخرى للاستفادة بشكل أفضل.';
+            }
+            
             document.getElementById('feedback').innerHTML = `
-
-                <p>${feedbackText}</p>
-
-                <p style="margin-top: 10px; color: #666;">لقد أجبت بشكل صحيح على ${correctAnswers} من أصل ${questions.length} أسئلة.</p>
-
+                <p style="font-size: 1.2em;">${feedbackText}</p>
+                <p style="margin-top: 15px; color: #2c3e50;">لقد أجبت بشكل صحيح على ${correctAnswers} من أصل ${questions.length} أسئلة.</p>
             `;
-
         }
 
         function restartQuiz() {
-
+            // إعادة إنشاء الأسئلة بخلط جديد
+            questions = prepareQuestions();
+            questions = shuffleQuestions(questions);
+            
             currentQuestion = 0;
-
             answers = new Array(questions.length).fill(null);
-
             answered = new Array(questions.length).fill(false);
-
             quizCompleted = false;
-
-           
-
+            
             document.getElementById('quiz-content').style.display = 'block';
-
             document.querySelector('.button-container').style.display = 'flex';
-
             document.getElementById('results').classList.remove('show');
-
-           
-
+            
             renderQuestion();
-
         }
 
         // بدء الاختبار
-
         renderQuestion();
-
     </script>
-
 </body>
-
 </html>
-
- 
